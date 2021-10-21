@@ -7,7 +7,7 @@ const app = express();
 const publicPath = path.resolve(__dirname, './public');
 app.use(express.static(publicPath));
 
-let rutasIndex = require('.routes/index.js')
+let rutasIndex = require('./routes/index.js')
 
 let rutasUsuarios = require('./routes/usuarios.js')
 
@@ -18,10 +18,6 @@ app.set('view engine', 'ejs');
 app.listen(3000, () => console.log("Servidor funcionando"));
 
 app.use('/', rutasIndex);
-
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './routes/index.js'));
-})
 
 app.use('/usuarios', rutasUsuarios);
 
