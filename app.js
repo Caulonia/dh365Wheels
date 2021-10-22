@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 
 app.listen(3000, () => console.log("Servidor funcionando"));
 
-app.get('/', rutasIndex);
+app.use('/', rutasIndex);
 
-app.get('/usuarios', rutasUsuarios);
+app.use('/usuarios', rutasUsuarios);
 
-app.get('/productos', rutasProductos);
+app.use('/productos', rutasProductos);
