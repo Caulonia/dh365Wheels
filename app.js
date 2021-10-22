@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 
 app.listen(process.env.PORT || 3000, ()=>{
     console.log('Servidor funcionando');
+});
 
 app.use('/', rutasIndex);
 
