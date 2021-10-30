@@ -1,22 +1,22 @@
 const productsController = {
    
     carrito: (req, res) =>{
-        res.render('products/productCart')
+        res.render('../productCart')
     },
     detalles: (req, res) =>{
-        res.render('products/productDetail')
+        res.render('../productDetail')
     },
     store: (req, res) =>{
-        res.render('products/productStore')
+        res.render('../productStore')
     },
     crear: (req, res) =>{
-        res.render('products/productCreate')
+        res.render('../productCreate')
     },
     modificar: (req, res)=>{
-        res.render('products/productModify')
+        res.render('../productModify')
     },
     eliminar: (req, res)=>{
-        res.render('products/productDelete')
+        res.render('../productDelete')
     },
 }
 
