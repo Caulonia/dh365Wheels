@@ -1,26 +1,41 @@
 const express = require('express');
-
-const path = require('path');
-
 const app = express();
 
-const publicPath = path.resolve(__dirname, './public');
-app.use(express.static(publicPath));
+const path = require("path");
 
-let rutasIndex = require('./routes/index.js')
+const publicPath = path.resolve(__dirname, '../public');
+const methodOverride = require ("method-override");
 
-let rutasUsuarios = require('./routes/usuarios.js')
+//external files
+let rutasIndex = require('./routes/index');
+let rutasProductos = require('./routes/product');
+let rutasUsuarios = require('./routes/users');
 
-let rutasProductos = require('./routes/productos.js')
+// Middlewares
+app.use(express.json());
+// Formulario => Objeto Literal => JSON
+app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
+
+//Routes
+app.use('/', rutasIndex);
+app.use('/productos', rutasProductos);
+app.use('/usuarios', rutasUsuarios);
+
+//setting. Buena práctica
 
 app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "./views"));
 
+app.use(express.static(publicPath));
+
+// Cambiar bloque para Heroku
 app.listen(process.env.PORT || 3000, ()=>{
     console.log('Servidor funcionando');
 });
 
-app.use('/', rutasIndex);
+//not-found. End of route
+app.use((req, res, next) => {
+    res.status(404).render("main/not-found")
+});
 
-app.use('/usuarios', rutasUsuarios);
-
-app.use('/productos', rutasProductos);
